@@ -38,7 +38,9 @@
     function registerAdEvents() {
         // new events, with variable to differentiate: adNetwork, adType, adEvent
         document.addEventListener('onAdFailLoad', function (data) {
-            document.getElementById("screen").style.display = 'none';        });
+            alert(data.error + ', ' + data.reason);
+            document.getElementById("screen").style.display = 'none';
+        });
         document.addEventListener('onAdLoaded', function (data) { });
         document.addEventListener('onAdPresent', function (data) { });
         document.addEventListener('onAdLeaveApp', function (data) { });
