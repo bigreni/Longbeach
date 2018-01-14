@@ -57,8 +57,11 @@
    function checkFirstUse()
     {
         TransitMaster.StopTimes({arrivals: true, headingLabel: "Arrival"});
+        alert('init app start');
         initApp();
+        alert('ask rating start');
         askRating();
+        alert('ga start');
         window.ga.startTrackerWithId('UA-88579601-6', 1, function(msg) {
             window.ga.trackView('Home');
         });    
