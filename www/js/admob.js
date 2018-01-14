@@ -56,12 +56,12 @@
 
    function checkFirstUse()
     {
+        TransitMaster.StopTimes({arrivals: true, headingLabel: "Arrival"});
+        initApp();
+        askRating();
         window.ga.startTrackerWithId('UA-88579601-6', 1, function(msg) {
             window.ga.trackView('Home');
         });    
-        initApp();
-        askRating();
-        TransitMaster.StopTimes({arrivals: true, headingLabel: "Arrival"});
         //document.getElementById("screen").style.display = 'none';
     }
 
@@ -97,6 +97,7 @@ TransitMaster.StopTimes = function (options) {
     var timer = null;
     var initialView = true;
     $('#simplemenu').sidr();
+
     initialize();
 
     function initialize() {
