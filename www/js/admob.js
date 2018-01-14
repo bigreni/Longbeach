@@ -38,7 +38,6 @@
     function registerAdEvents() {
         // new events, with variable to differentiate: adNetwork, adType, adEvent
         document.addEventListener('onAdFailLoad', function (data) {
-            alert(data.error + ', ' + data.reason);
             document.getElementById("screen").style.display = 'none';
         });
         document.addEventListener('onAdLoaded', function (data) { });
