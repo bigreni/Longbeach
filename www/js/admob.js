@@ -58,12 +58,12 @@
    function checkFirstUse()
     {
         TransitMaster.StopTimes({arrivals: true, headingLabel: "Arrival"});
-        window.ga.startTrackerWithId('UA-88579601-6', 1, function(msg) {
-            window.ga.trackView('Home');
-        });    
-        initApp();
-        askRating();
-        //document.getElementById("screen").style.display = 'none';
+        //window.ga.startTrackerWithId('UA-88579601-6', 1, function(msg) {
+        //    window.ga.trackView('Home');
+        //});    
+        //initApp();
+        //askRating();
+        document.getElementById("screen").style.display = 'none';
     }
 
 function askRating()
@@ -85,8 +85,8 @@ AppRate.promptForRating(false);
 
 function loadFaves()
 {
-    window.ga.trackView('Favorites');
     window.location = "Favorites.html";
+    window.ga.trackView('Favorites');
 }
 
 var	TransitMaster =	TransitMaster || {};
@@ -97,7 +97,7 @@ TransitMaster.StopTimes = function (options) {
 
     var timer = null;
     var initialView = true;
-    $('#simplemenu').sidr();
+    //$('#simplemenu').sidr();
 
     initialize();
 
@@ -106,7 +106,7 @@ TransitMaster.StopTimes = function (options) {
             var temp = $("#MainContent_routeList").val();
 
             if (temp != "") {
-                $.cookie("route", temp, { expires: 30 });
+                //$.cookie("route", temp, { expires: 30 });
                 getDirections();
             }
         });
@@ -115,7 +115,7 @@ TransitMaster.StopTimes = function (options) {
             var temp = $("#MainContent_directionList").val();
 
             if (temp != "") {
-                $.cookie("direction", temp, { expires: 30 });
+                //$.cookie("direction", temp, { expires: 30 });
                 reset();
 
                 if (settings.includeStops)
@@ -128,7 +128,7 @@ TransitMaster.StopTimes = function (options) {
                 var temp = $("#MainMobileContent_stopList").val();
 
                 if (temp != "") {
-                    $.cookie("stop", temp, { expires: 30 });
+                    //$.cookie("stop", temp, { expires: 30 });
                     getArrivalTimes();
                 }
             });
@@ -138,19 +138,19 @@ TransitMaster.StopTimes = function (options) {
     }
 
 
-    function checkListCookie(key, list) {
-        if (initialView) {
-            var temp = $.cookie(key);
-            if (temp != null && $("#" + list + " option[value=" + temp + "]").length > 0) {
-                $("#" + list).val(temp).change();
-                return true;
-            }
-            else
-                initialView = false;
-        }
+    //function checkListCookie(key, list) {
+    //    if (initialView) {
+    //        var temp = $.cookie(key);
+    //        if (temp != null && $("#" + list + " option[value=" + temp + "]").length > 0) {
+    //            $("#" + list).val(temp).change();
+    //            return true;
+    //        }
+    //        else
+    //            initialView = false;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     function getRoutes() {
         //$("#MainMobileContent_routeList").text("Loading	routes...");
@@ -175,7 +175,6 @@ TransitMaster.StopTimes = function (options) {
                     //$(list).get(0).options[$(list).get(0).options.length] = new Option(item.name, item.id);
                 });
                 $(list).val('0');
-                checkListCookie("route", "MainMobileContent_routeList");
             },
             error: function () {
                 $("#MainMobileContent_routeList").text("Failed to load routes");
@@ -192,10 +191,10 @@ TransitMaster.StopTimes = function (options) {
         reset();
 
         // Clear cookies if	this is	a new selection
-        if (!initialView) {
-            $.cookie("direction", null);
-            $.cookie("stop", null);
-        }
+        //if (!initialView) {
+        //    $.cookie("direction", null);
+        //    $.cookie("stop", null);
+        //}
 
         if (settings.includeStops) {
             $("#MainMobileContent_stopList").get(0).options.length = 0;
@@ -227,8 +226,6 @@ TransitMaster.StopTimes = function (options) {
                     //$(list).get(0).options[$(list).get(0).options.length] = new Option(item.name, item.id);
                 });
 
-                checkListCookie("direction", "MainMobileContent_directionList");
-
                 if (!settings.includeStops)
                     initialView = false;
             },
@@ -245,8 +242,8 @@ TransitMaster.StopTimes = function (options) {
 
     function getStops() {
         // Clear cookies if	this is	a new selection
-        if (!initialView)
-            $.cookie("stop", null);
+        //if (!initialView)
+        //    $.cookie("stop", null);
 
         var list = $("#MainMobileContent_stopList");
 
@@ -272,8 +269,6 @@ TransitMaster.StopTimes = function (options) {
                     $(list).append($("<option />").val(item.id).text(item.name));
                     //$(list).get(0).options[$(list).get(0).options.length] = new Option(item.name, item.id);
                 });
-
-                checkListCookie("stop", "MainMobileContent_stopList");
 
                 initialView = false;
             },
